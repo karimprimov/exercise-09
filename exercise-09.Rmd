@@ -260,6 +260,7 @@ se
 Calculate 95% CI by hand
 ```{r}
 # by hand
+alpha <- 0.05
 lower <- m.summary$estimate -
   qt(1 - alpha / 2, df = nrow(d) - 2) * m.summary$std.error
 upper <- m.summary$estimate +

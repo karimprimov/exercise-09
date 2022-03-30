@@ -378,7 +378,7 @@ boot.slope.summary
 What is the p-value associated with your observed slope coefficient based on each of these methods? 
 
 
-P-values based on percentile method
+P-values based on percentile method #chapter 8 and 9 in 
 ```{r}
 # first define alpha, CI boundaries, and critical values
 alpha <- 0.05

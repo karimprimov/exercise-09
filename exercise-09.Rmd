@@ -40,12 +40,11 @@ slope.test <- function(beta1, data){
     "\nSum of Squared Deviations = ", round(ols, 3)))
   g
 }
+
+#manipulate(slope.test(beta1, data=d),
+#  beta1 = slider(-1, 1, initial = 0, step = 0.005))
 ```
 
-```{r}
-manipulate(slope.test(beta1, data=d),
-  beta1 = slider(-1, 1, initial = 0, step = 0.005))
-```
 
 ```{r}
 b1 <- cor(d$height, d$weight) * sd(d$height)/sd(d$weight)
@@ -374,76 +373,3 @@ boot.slope.summary <- boot.slope %>%
 boot.slope.summary
 ```
 
-
-What is the p-value associated with your observed slope coefficient based on each of these methods? 
-
-
-P-values based on percentile method #chapter 8 and 9 in 
-```{r}
-# first define alpha, CI boundaries, and critical values
-alpha <- 0.05
-confidence_level <- 1 - alpha
-p_lower <- alpha / 2
-p_upper <- 1 - (alpha / 2)
-degrees_of_freedom <- nrow(d) - 2
-critical_value <- qt(p_upper, df = degrees_of_freedom)
-
-# original slope
-original.slope <- lm(data = d_mod, ECV ~ Group_size) %>%
-  # tidy the model and add the CI based on the t distribution
-  tidy(conf.int=TRUE, conf.level=confidence_level) %>%
-  # or manually calculate the CI based on the t distribution
-  mutate(
-    lower = estimate - std.error * critical_value,
-    upper = estimate + std.error * critical_value
-  ) %>%
-  filter(term=="Group_size")
-original.slope # show model results for slope of Group_size
-```
-
-
-P-values based on theoretical method
-```{r}
-# first define alpha, CI boundaries, and critical values
-alpha <- 0.05
-confidence_level <- 1 - alpha
-p_lower <- alpha / 2
-p_upper <- 1 - (alpha / 2)
-degrees_of_freedom <- nrow(d) - 2
-critical_value <- qt(p_upper, df = degrees_of_freedom)
-
-# original slope
-original.slope <- lm(data = d_mod, ECV ~ Group_size) %>%
-  # tidy the model and add the CI based on the t distribution
-  tidy(conf.int=TRUE, conf.level=confidence_level) %>%
-  # or manually calculate the CI based on the t distribution
-  mutate(
-    lower = quantile(stat, p_lower),
-    upper = quantile(stat, p_upper)
-  ) %>%
-  filter(term=="Group_size")
-original.slope # show model results for slope of Group_size
-```
-
-
-
-
-
-
-
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```

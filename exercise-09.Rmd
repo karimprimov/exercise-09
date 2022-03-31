@@ -221,6 +221,7 @@ model
 summary(model)
 ```
 
+Now back to the whole dataset, not filtering by groups:
 
 Calculate standard error for the slope coefficient, the 95% CI, and p-value associated with this coefficient by hand
 ```{r}

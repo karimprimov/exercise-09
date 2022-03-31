@@ -261,9 +261,9 @@ Calculate 95% CI by hand
 # by hand
 alpha <- 0.05
 lower <- m.summary$estimate -
-  qt(1 - alpha / 2, df = nrow(d) - 2) * m.summary$std.error
+  qt(1 - alpha / 2, df = nrow(d_mod) - 2) * m.summary$std.error
 upper <- m.summary$estimate +
-  qt(1 - alpha / 2, df = nrow(d) - 2) * m.summary$std.error
+  qt(1 - alpha / 2, df = nrow(d_mod) - 2) * m.summary$std.error
 CI <- cbind(lower, upper)
 rownames(CI) <- c("(Intercept)", "Group_size")
 colnames(CI) <- c(paste0(as.character(alpha/2 * 100), " %"),paste0(as.character((1-alpha/2) * 100), " %"))
